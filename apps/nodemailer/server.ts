@@ -1,15 +1,13 @@
-import 'dotenv';
+import 'dotenv/config';
 import express from 'express';
 import type { Request, Response, NextFunction } from 'express';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import fs from 'fs';
 import { Liquid } from 'liquidjs';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const viewsPath = path.join(__dirname, 'views');
@@ -75,7 +73,10 @@ async function loadRoutes() {
   }
 }
 
-await loadRoutes();
+// Load routes (async, but not top-level await)
+loadRoutes().catch(err => {
+  console.error('Failed to load routes:', err);
+});
 
 // Error handling middleware
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {

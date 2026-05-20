@@ -2,8 +2,8 @@
   "extends": "@deific-arts/typescript-config/base.json",
   "compilerOptions": {
     "outDir": "./dist",
-    "module": "nodenext",
-    "moduleResolution": "nodenext"
+    "module": "commonjs",
+    "moduleResolution": "node"
   },
   "include": [
     "*.ts",
