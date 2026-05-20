@@ -1,28 +1,31 @@
 {
-  "name": "web",
-  "version": "0.1.0",
+  "name": "deific-arts-llc",
   "type": "module",
-  "private": true,
+  "version": "1.0.0",
   "scripts": {
-    "dev": "next dev --port 3000",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint --max-warnings 0",
-    "check-types": "next typegen && tsc --noEmit"
+    "dev": "astro dev --host",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
-    "@repo/ui": "*",
-    "next": "16.2.0",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "@astrojs/mdx": "^5.0.4",
+    "@astrojs/rss": "^4.0.18",
+    "@astrojs/sitemap": "^3.7.2",
+    "astro": "^6.2.2",
+    "kemet-ui": "^4.1.0",
+    "lit": "^3.3.2",
+    "motion": "^12.38.0",
+    "sass": "^1.99.0",
+    "sharp": "^0.34.5",
+    "snapsvg": "^0.5.1",
+    "snapsvg-cjs": "^0.0.6",
+    "swiper": "^12.1.4",
+    "typewriter-effect": "^2.22.0"
   },
   "devDependencies": {
-    "@repo/eslint-config": "*",
-    "@repo/typescript-config": "*",
-    "@types/node": "^22.15.3",
-    "@types/react": "19.2.2",
-    "@types/react-dom": "19.2.2",
-    "eslint": "^9.39.1",
-    "typescript": "5.9.2"
+    "@deific-arts/eslint-config": "*",
+    "@deific-arts/typescript-config": "*",
+    "typescript": "^6.0.3"
   }
 }

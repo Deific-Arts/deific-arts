@@ -1,0 +1,107 @@
+---
+import DefaultLayout from '../../layouts/Default.astro';
+---
+
+<DefaultLayout>
+  <article>
+    <deific-pricing>
+      <h2>Choose Your Plan</h2>
+      <div>
+        <figure>
+          <h3>Active Development Tier</h3>
+          <span>$2,000/month</span>
+          <figcaption>A $2,000/month retainer keeps me actively working on your project, ensuring continuous progress and priority support.</figcaption>
+          <h4>What's included:</h4>
+          <ul>
+            <li>Initial Web design and build</li>
+            <li>Unlimited revisions</li>
+            <li>Unlimited feature requests</li>
+            <li>Unlimited bug fixes</li>
+            <li>Unlimited security updates</li>
+            <li>Free domain registration</li>
+            <li>Free hosting</li>
+            <li>Free SSL Certificate</li>
+            <li>SEO Optimization</li>
+            <li>Performance Optimization</li>
+            <li>48 hour response time for support</li>
+          </ul>
+          <a class="button" href="https://buy.stripe.com/9B68wQf5e8hpgTmbLW0Ny00" target="_blank">
+            Sign up for the Active Development Tier
+          </a>
+        </figure>
+        <figure>
+          <h3>Maintenance Tier</h3>
+          <span>$150/month</span>
+          <figcaption>A $150/month retainer keeps your project running smoothly with regular updates, security patches, and bug fixes.</figcaption>
+          <h4>What's included:</h4>
+          <ul>
+            <li>Unlimited bug fixes</li>
+            <li>Unlimited security updates</li>
+            <li>Free domain renewal</li>
+            <li>Free hosting + migration</li>
+            <li>Free SSL Cert updates</li>
+          </ul>
+          <a class="button" href="https://buy.stripe.com/bJecN68GQ2X55aEbLW0Ny01" target="_blank">
+            Sign up for the Maintenance Tier
+          </a>
+        </figure>
+      </div>
+    </deific-pricing>
+    <p>Houly work on existing projects is available upon request at a negotiable rate. Please <a href="/consultation/">consult with me</a> for more information.</p>
+    <br />
+    <h2>Already signed up?</h2>
+    <p><a class="button" href="https://billing.stripe.com/p/login/9B68wQf5e8hpgTmbLW0Ny00" target="_blank">Manage your subscription</a></p>
+  </article>
+  <style>
+    :root {
+      --footer-waves-height: 205px;
+
+      @media (width > 768px) {
+        --footer-waves-height: 285px;
+      }
+    }
+
+    article {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      min-height: calc(100vh - var(--footer-waves-height));
+    }
+
+    deific-pricing {
+      & > div {
+        margin: 2rem 0;
+        display: flex;
+        gap: 2rem;
+        flex-direction: column;
+
+        @media (width > 1024px) {
+
+          flex-direction: row;
+        }
+      }
+
+      figure {
+        padding: 2rem;
+        border-radius: 0.5rem;
+        border: 1px solid var(--color-border);
+      }
+
+      h3 {
+        margin: 0;
+        line-height: 1;
+      }
+
+      h3 + span {
+        display: block;
+        font-size: 3rem;
+      }
+
+      figcaption {
+        margin: 1rem 0;
+        font-style: italic;
+        opacity: 0.9;
+      }
+    }
+  </style>
+</DefaultLayout>

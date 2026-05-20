@@ -1,0 +1,59 @@
+---
+const currentYear = new Date().getFullYear()
+---
+
+<footer>
+  <deific-waves></deific-waves>
+  <section>
+    <nav>
+      <a href="/about">About</a>
+      <a href="/services">Services</a>
+      <a href="/work">Work</a>
+      <a href="/blog">Blog</a>
+      <a href="/consultation">Consultation</a>
+    </nav>
+    <p>&copy; {currentYear} Deific Arts, LLC.</p>
+  </section>
+</footer>
+<script>
+  import '../elements/callout.ts';
+</script>
+<style>
+  footer {
+    text-align: center;
+    display: block;
+    position: sticky;
+    z-index: 99;
+    width: 100%;
+    height: auto;
+    bottom: 0;
+    padding: 0;
+    margin: 0;
+
+    & > * {
+      padding: 0;
+    }
+
+    & > section {
+      background: var(--color-white);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    p {
+      color: var(--color-background);
+    }
+
+    nav {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+  }
+</style>

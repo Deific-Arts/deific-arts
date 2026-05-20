@@ -1,0 +1,88 @@
+@use "./animations";
+
+body main {
+  deific-home {
+    svg {
+      width: 66%;
+      max-width: 640px;
+      opacity: 0;
+      animation:
+        drop-in 1000ms ease-out forwards,
+        fade-in 2000ms ease-out forwards;
+    }
+  }
+
+  deific-about {
+    & > * {
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      opacity: 0.5;
+      margin: 0;
+      padding: 0;
+      letter-spacing: 2px;
+    }
+
+    img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    & > div {
+      width: 100%;
+      font-size: 2rem;
+      text-align: left;
+      flex-direction: column;
+      justify-content: center;
+
+      @media screen and (min-width: 769px) {
+        flex-direction: row;
+        justify-content: flex-start
+      }
+    }
+
+    deific-builds {
+      display: block;
+      font-size: 3rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      line-height: 1.1;
+      opacity: 1;
+      text-align: left;
+    }
+
+    .Typewriter__cursor {
+      color: var(--color-primary);
+    }
+  }
+
+  deific-work {
+    height: auto;
+
+    [slot] {
+      align-items: flex-end;
+      position: relative;
+      top: -10vh;
+      padding: 2rem;
+    }
+
+    p,
+    img {
+      width: 100%;
+      max-width: 650px;
+      text-align: right;
+    }
+  }
+
+  deific-consultation {
+    height: 90vh;
+    z-index: 1;
+  }
+}

@@ -1,0 +1,47 @@
+---
+
+import BaseHead from '../components/BaseHead.astro';
+import GoogleAnalytics from '../components/GoogleAnalytics.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../scripts/consts';
+
+import '../styles/_base.scss';
+import '../styles/_animations.scss';
+import '../styles/_vendor.scss';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+  <GoogleAnalytics />
+	<body>
+    <main>
+      <slot />
+      <Footer />
+    </main>
+    <script src="https://unpkg.com/snapsvg@0.5.1/dist/snap.svg-min.js" defer></script>
+    <script>
+      // elements
+      import '../elements/button';
+      import '../elements/waves';
+      import '../elements/services';
+      import '../elements/work';
+      import '../elements/consultation';
+      // scripts
+      import '../scripts/home';
+    </script>
+    <style>
+      main {
+        scroll-snap-type: y mandatory;
+        scroll-behavior: smooth;
+        height: 100vh;
+        position: relative;
+        z-index: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+    </style>
+  </body>
+</html>

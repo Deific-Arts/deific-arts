@@ -1,0 +1,82 @@
+---
+
+import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseHead from '../components/BaseHead.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import '../styles/_base.scss';
+import GoogleAnalytics from '../components/GoogleAnalytics.astro';
+
+type Props = CollectionEntry<'blog'>['data'];
+const { title, excerpt, date, banner } = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={excerpt as string} />
+	</head>
+  <GoogleAnalytics />
+	<body>
+		<main>
+      <Header />
+			<article>
+        <h1>{title}</h1>
+        Posted on <FormattedDate date={date} />
+        <hr />
+        { banner && <Image class="banner"src={banner!} width={1216} height={684} alt={title} /> }
+        <slot />
+			</article>
+      <Footer />
+		</main>
+    <script>
+      import '../elements/waves'
+    </script>
+    <style>
+      h1, h2, h3, h4, h5, h6 {
+        margin: 0;
+        padding: 0;
+        line-height: 1.3;
+      }
+
+      h1 {
+        font-size: 3rem;
+      }
+
+      h2 {
+        font-size: 2.5rem;
+        margin-top: 2rem;
+      }
+
+      h3 {
+        font-size: 2rem;
+      }
+
+      hr {
+        opacity: 0.25;
+        margin-bottom: 2rem;
+      }
+
+
+
+      article {
+        text-align: left;
+        line-height: 2;
+        font-size: 1.125rem;
+        padding: 3rem 2rem 256px 2rem;
+      }
+      article {
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+
+      .banner {
+        display: flex;
+        max-width: 100%;
+        height: auto;
+        margin: 3rem auto 0 auto;
+      }
+    </style>
+	</body>
+</html>

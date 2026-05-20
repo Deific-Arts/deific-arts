@@ -1,0 +1,13 @@
+{
+  "extends": "@deific-arts/typescript-config/base.json",
+  "include": [
+    "*.ts",
+    "routes/**/*.ts",
+    "views/**/*.liquid"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "api"
+  ]
+}

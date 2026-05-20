@@ -1,0 +1,13 @@
+.fp-watermark {
+  background: none;
+  border: 1px solid white;
+
+  a {
+    color: white !important;
+    background: none;
+  }
+}
+
+.fp-is-overflow > .fp-overflow {
+  overflow-y: hidden;
+}
