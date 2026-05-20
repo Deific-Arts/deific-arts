@@ -48,7 +48,7 @@ app.get('/', (req: Request, res: Response) => {
 // Dynamic route loading - automatically maps /routes/[folder] to /[folder]
 const routesDir = path.join(__dirname, 'routes');
 
-async function loadRoutes() {
+export async function loadRoutes() {
   // Read all directories in routes folder and mount them dynamically
   const routeDirs = fs.readdirSync(routesDir, { withFileTypes: true })
     .filter(dirent => dirent.isDirectory());
@@ -70,11 +70,6 @@ async function loadRoutes() {
     }
   }
 }
-
-// Load routes (async, but not top-level await)
-loadRoutes().catch(err => {
-  console.error('Failed to load routes:', err);
-});
 
 // Error handling middleware
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
