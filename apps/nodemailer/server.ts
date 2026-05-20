@@ -8,8 +8,6 @@ import { Liquid } from 'liquidjs';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const __dirname = path.dirname(__filename);
-
 const viewsPath = path.join(__dirname, 'views');
 console.log('Views path:', viewsPath);
 console.log('Views directory exists:', fs.existsSync(viewsPath));
