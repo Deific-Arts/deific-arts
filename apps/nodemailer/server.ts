@@ -60,10 +60,10 @@ async function loadRoutes() {
     const routePath = path.join(routesDir, routeName);
 
     try {
-      // Import the route module (try .ts for development, fall back to .js for production)
+      // Import the route module (try .ts for development, fall back to .cjs for production)
       const tsPath = `${routePath}/index.ts`;
-      const jsPath = `${routePath}/index.js`;
-      const importPath = fs.existsSync(tsPath) ? tsPath : jsPath;
+      const cjsPath = `${routePath}/index.cjs`;
+      const importPath = fs.existsSync(tsPath) ? tsPath : cjsPath;
       const routeModule = await import(`file://${importPath}`);
       app.use(`/${routeName}`, routeModule.default || routeModule);
       console.log(`✓ Mounted route: /${routeName} -> ${routePath}`);

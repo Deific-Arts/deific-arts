@@ -5,9 +5,10 @@
   "main": "dist/server.js",
   "scripts": {
     "dev": "NODE_OPTIONS=--no-deprecation nodemon server.ts",
-    "build": "tsc",
-    "start": "NODE_OPTIONS=--no-deprecation node entry.js",
-    "tsc": "tsc"
+    "build": "tsc && npm run rename-to-cjs",
+    "start": "NODE_OPTIONS=--no-deprecation node entry.cjs",
+    "tsc": "tsc",
+    "rename-to-cjs": "cd dist && find . -name \"*.js\" -type f ! -name \"*.map\" -exec bash -c 'mv \"$1\" \"${1%.js}.cjs\"' _ {} \\;"
   },
   "dependencies": {
     "@sendgrid/mail": "^8.1.6",

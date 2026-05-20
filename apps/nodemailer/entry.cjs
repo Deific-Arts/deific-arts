@@ -1,4 +1,4 @@
-const { app, PORT } = require('./dist/server.js');
+const { app, PORT } = require('./dist/server.cjs');
 
 // Start server
 app.listen(PORT, () => {
