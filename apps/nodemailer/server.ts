@@ -45,6 +45,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 // Redirect from root to /test
 app.get('/', (req: Request, res: Response) => {
+  console.log('Redirecting from root to /test');
   res.redirect('/test');
 });
 
@@ -74,7 +75,7 @@ async function loadRoutes() {
   }
 }
 
-loadRoutes();
+await loadRoutes();
 
 // Error handling middleware
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
@@ -86,5 +87,6 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 app.use('*', (req: Request, res: Response) => {
   res.status(404).json({ message: 'Route not found' });
 });
+
 
 export { app, PORT };

@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "An app that handles email sending for Deific Arts LLC clients.",
   "type": "module",
-  "main": "dist/index.js",
+  "main": "dist/server.js",
   "scripts": {
     "dev": "NODE_OPTIONS=--no-deprecation nodemon server.ts",
     "build": "tsc",
-    "start": "NODE_OPTIONS=--no-deprecation node dist/server.js",
+    "start": "NODE_OPTIONS=--no-deprecation node entry.js",
     "tsc": "tsc"
   },
   "dependencies": {
