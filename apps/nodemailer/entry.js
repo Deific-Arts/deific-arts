@@ -1,4 +1,4 @@
-const { app, PORT } = require('./dist/server');
+import { app, PORT } from './dist/server.js';
 
 // Start server
 app.listen(PORT, () => {
@@ -6,4 +6,4 @@ app.listen(PORT, () => {
   console.log(`Visit http://localhost:${PORT} to test the email functionality`);
 });
 
-module.exports = app;
+export default app;
