@@ -5,8 +5,9 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "NODE_OPTIONS=--no-deprecation nodemon app.ts",
-    "build": "tsc && cp -r views dist/",
-    "start": "NODE_OPTIONS=--no-deprecation node dist/app.js"
+    "build": "tsc",
+    "start": "NODE_OPTIONS=--no-deprecation node dist/app.js",
+    "tsc": "tsc"
   },
   "dependencies": {
     "@sendgrid/mail": "^8.1.6",

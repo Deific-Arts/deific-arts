@@ -1,5 +1,8 @@
 {
   "extends": "@deific-arts/typescript-config/base.json",
+  "compilerOptions": {
+    "outDir": "./dist"
+  },
   "include": [
     "*.ts",
     "routes/**/*.ts",
