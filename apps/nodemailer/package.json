@@ -2,11 +2,12 @@
   "name": "@deific-arts/nodemailer",
   "version": "1.0.0",
   "description": "An app that handles email sending for Deific Arts LLC clients.",
+  "type": "module",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "NODE_OPTIONS=--no-deprecation nodemon app.ts",
+    "dev": "NODE_OPTIONS=--no-deprecation nodemon server.ts",
     "build": "tsc",
-    "start": "NODE_OPTIONS=--no-deprecation node dist/app.js",
+    "start": "NODE_OPTIONS=--no-deprecation node dist/server.js",
     "tsc": "tsc"
   },
   "dependencies": {

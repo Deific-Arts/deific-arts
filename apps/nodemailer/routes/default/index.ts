@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
-import { Router, Request, Response } from 'express';
+import express from 'express';
+import type { Router, Request, Response } from 'express';
 import * as nodemailer from 'nodemailer';
 import jwt from 'jsonwebtoken';
 
@@ -13,7 +14,7 @@ declare global {
   }
 }
 
-const router = Router();
+const router = express.Router();
 
 // Hardcoded JWT secret for demonstration
 const JWT_SECRET: string = process.env.JWT_SECRET || 'hardcoded-jwt-secret';

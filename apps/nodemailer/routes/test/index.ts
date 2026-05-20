@@ -1,6 +1,7 @@
-import { Router, Request, Response } from 'express';
+import express from 'express';
+import type { Router, Request, Response } from 'express';
 
-const router = Router();
+const router = express.Router();
 
 // Test route - renders the email form using Liquid template
 router.get('/', (request: Request, response: Response) => {
