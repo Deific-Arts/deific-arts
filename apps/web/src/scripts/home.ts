@@ -12,10 +12,12 @@ const inViewElements = () => {
   const deificGetStarted = document.querySelector('deific-consultation') as HTMLElement;
   const deificContact = document.querySelector('deific-contact') as HTMLElement;
   const deificBlog = document.querySelector('deific-blog') as HTMLElement;
+  const deificSkills = document.querySelector('deific-skills') as HTMLElement;
 
   deificHome && isElementInView(deificHome, (inView) => {
     if (inView) {
       window.history.replaceState(null, '', '/');
+      document.documentElement.dataset.page = 'home';
     }
   }, { threshold: .75 });
 
@@ -23,38 +25,52 @@ const inViewElements = () => {
     if (inView) {
       iBuild();
       window.history.replaceState(null, '', '/about/');
+      document.documentElement.dataset.page = 'about';
     }
   }, { threshold: .75 });
 
   deificServices && isElementInView(deificServices, (inView) => {
     if (inView) {
       window.history.replaceState(null, '', '/services/');
+      document.documentElement.dataset.page = 'services';
     }
   }, { threshold: .75 });
 
   deificWork && isElementInView(deificWork, (inView) => {
     if (inView) {
       window.history.replaceState(null, '', '/work/');
+      document.documentElement.dataset.page = 'work';
     }
   }, { threshold: .75 });
 
   deificGetStarted && isElementInView(deificGetStarted, (inView) => {
     if (inView) {
       window.history.replaceState(null, '', '/consultation/');
+      document.documentElement.dataset.page = 'consultation';
     }
   }, { threshold: .75 });
 
   deificContact && isElementInView(deificContact, (inView) => {
     if (inView) {
       window.history.replaceState(null, '', '/contact/');
+      document.documentElement.dataset.page = 'contact';
     }
   }, { threshold: .75 });
 
-  deificBlog && isElementInView(deificBlog, (inView) => {
+  // you must set any inView logic in the blog component itself
+  // deificBlog && isElementInView(deificBlog, (inView) => {
+  //   if (inView) {
+  //     window.history.replaceState(null, '', '/blog/');
+  //     document.documentElement.dataset.page = 'blog';
+  //   }
+  // }, { threshold: .75 });
+
+  deificSkills && isElementInView(deificSkills, (inView) => {
     if (inView) {
-      window.history.replaceState(null, '', '/blog/');
+      window.history.replaceState(null, '', '/skills/');
+      document.documentElement.dataset.page = 'skills';
     }
-  }, { threshold: .75 });
+  }, { threshold: .75 })
 }
 
 const scrollToCurrent = () => {

@@ -1,0 +1,34 @@
+kemet-button[link="/blog/"] {
+  position: fixed;
+  right: 2rem;
+  bottom: 285px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+
+[data-page="blog"] {
+  kemet-button[link="/blog/"] {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+
+deific-cta {
+  kemet-button {
+    opacity: 1;
+    pointer-events: auto;
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+[data-page="home"] {
+  deific-cta {
+    kemet-button {
+      opacity: 0;
+      pointer-events: auto;
+    }
+  }
+}

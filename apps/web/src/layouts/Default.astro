@@ -7,7 +7,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../scripts/consts';
 
 import '../styles/_base.scss';
 import '../styles/_animations.scss';
-import '../styles/_vendor.scss';
+import '../styles/_effects.scss';
 ---
 
 <!doctype html>
@@ -23,12 +23,20 @@ import '../styles/_vendor.scss';
     </main>
     <script src="https://unpkg.com/snapsvg@0.5.1/dist/snap.svg-min.js" defer></script>
     <script>
+      // kemet-ui
+      import 'kemet-ui/styles/kemet.base.css';
+      import 'kemet-ui/elements/fab';
+      import 'kemet-ui/elements/icon-bootstrap';
+      import 'kemet-ui/elements/button';
+
       // elements
-      import '../elements/button';
       import '../elements/waves';
-      import '../elements/services';
+      import '../elements/skills';
+      import '../elements/blog';
       import '../elements/work';
       import '../elements/consultation';
+      import '../elements/socials';
+      import '../elements/background';
       // scripts
       import '../scripts/home';
     </script>
