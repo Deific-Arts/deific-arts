@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import FormattedDate from './FormattedDate.astro';
+import FormattedDate from '../components/FormattedDate.astro';
 
 const { postsToShow = 3 } = Astro.props;
 
@@ -16,18 +16,19 @@ const posts = (await getCollection('blog')).sort(
       const bannerImage = post.data.banner ?? '';
       return (
         <deific-blog-post slot={`slide-${index}`}>
-          <h3>{post.data.title}</h3>
+          <h3>
+            {post.data.title}&nbsp;
+            <kemet-button rounded="circle" link={`/blog/${post.id}/`}>
+              <kemet-icon-bootstrap icon="chevron-right"></kemet-icon-bootstrap>
+            </kemet-button>
+          </h3>
           <span class="date">
             <kemet-icon-bootstrap icon="calendar"></kemet-icon-bootstrap>&nbsp;&nbsp;
             <FormattedDate date={post.data.date} />
           </span>
-          {bannerImage && <img src={bannerImage} alt={post.data.title} />}
+          {bannerImage && <a href={`/blog/${post.id}/`}><img src={bannerImage} alt={post.data.title} /></a>}
           <div class="action">
             <p>{post.data.excerpt}</p>
-            <kemet-button rounded="pill" link={`/blog/${post.id}/`}>
-              Read More
-              <kemet-icon-bootstrap icon="chevron-right" slot="right"></kemet-icon-bootstrap>
-            </kemet-button>
           </div>
         </deific-blog-post>
       );
@@ -36,25 +37,32 @@ const posts = (await getCollection('blog')).sort(
 </deific-blog>
 <kemet-button rounded="pill" variant="outlined" link="/blog/" polarity="dark">
   <kemet-icon-bootstrap icon="chevron-right" slot="right"></kemet-icon-bootstrap>
-  View All Posts
+  View all of my blog posts
 </kemet-button>
 <style>
   deific-blog {
     scroll-snap-align: start;
+
     [slot] {
       display: grid;
     }
 
     h3 {
+      display: inline;
       font-size: 2rem;
-      padding: 0;
+      padding: 0 4rem 0 0;
+      box-sizing: border-box;
       margin: 0;
       max-width: 50vw;
+
+      kemet-button {
+        transform: scale(0.8);
+      }
     }
 
     img {
       width: auto;
-      max-height: 33vh;
+      max-height: 25vh;
     }
 
     .date {

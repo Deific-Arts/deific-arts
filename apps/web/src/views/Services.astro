@@ -1,0 +1,70 @@
+<deific-services>
+  <div>
+    <deific-service>
+      <img src="/assets/development.png" alt="Web Development" />
+      <h2>Web Development</h2>
+      <p>I develop custom solutions for your business making them performant and optimized to your needs. I can also tune-up existing sites and applications.</p>
+    </deific-service>
+    <deific-service>
+      <img src="/assets/design.png" alt="Web Design" />
+      <h2>Web Design</h2>
+      <p>A good design gives your product credibility and trust. I design products that are visually appealing, accessible, and easy to navigate.</p>
+    </deific-service>
+    <deific-service>
+      <img src="/assets/hosting.png" alt="Hosting" />
+      <h2>Hosting</h2>
+      <p>Hosting your product is free with my services so you choose to sign up. Or you can host your product on your own infrastructure.</p>
+    </deific-service>
+    <deific-service>
+      <img src="/assets/seo.webp" alt="SEO" />
+      <h2>SEO</h2>
+      <p>I build performant products that are optimized for SEO to reach as many potential customers, clients, or members possible.</p>
+    </deific-service>
+  </div>
+</deific-services>
+<style>
+  deific-services {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    width: 100%;
+    height: 100vh;
+    max-width: 1440px;
+    margin: 0 auto;
+    scroll-snap-align: start;
+    position: relative;
+
+    & > * {
+      width: 80%;
+      height: auto;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      align-items: center;
+      justify-content: center;
+      margin-top: 4rem;
+
+      @media (min-width: 1024px) {
+        padding: 2rem;
+      }
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      max-width: 164px;
+      object-fit: cover;
+    }
+
+    deific-service {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2rem;
+      border-radius: 1rem;
+      border: 1px solid #ffffff99;
+    }
+  }
+</style>

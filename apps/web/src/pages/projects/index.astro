@@ -1,18 +1,8 @@
 ---
 import DefaultLayout from '../../layouts/Default.astro';
+import Home from '../../components/Home.astro';
 ---
 
 <DefaultLayout>
-  <me-hero>
-    <div class="loader"></div>
-    <p>Loading projects...</p>
-  </me-hero>
+  <Home />
 </DefaultLayout>
-
-<script>
-  const mainElement = document.querySelector('main');
-  mainElement && (mainElement.style.overflow = 'hidden');
-</script>
-<script>
-  import '../../elements/me-hero';
-</script>

@@ -7,12 +7,13 @@ export class DeificBackground extends LitElement {
     :host {
       --height: 0vh;
       --opacity: 0;
+      --z-index: -1;
 
       display: block;
       position: sticky;
       left: 0;
       bottom: 0;
-      z-index: -1;
+      z-index: var(--z-index, -1);
       width: 100%;
       height: var(--height);
       opacity: var(--opacity);
@@ -39,6 +40,21 @@ export class DeificBackground extends LitElement {
     :host([section="blog"]) {
       --height: 35vh;
       --opacity: 1;
+    }
+
+    :host([section="projects"]) {
+      --height: 85vh;
+      --opacity: 0.8;
+    }
+
+    :host([section="services"]) {
+      --height: 100vh;
+      --opacity: .75;
+    }
+
+    :host([section="faqs"]) {
+      --height: 100vh;
+      --opacity: .25;
     }
 
     kemet-button {
@@ -83,7 +99,7 @@ export class DeificBackground extends LitElement {
       });
     }, options);
 
-    const sectionSeletctor = 'deific-home, deific-about, deific-services, deific-blog, deific-skills';
+    const sectionSeletctor = 'deific-home, deific-about, deific-services, deific-faqs, deific-projects, deific-blog, deific-skills, deific-started';
 
     // Observe all section elements
     const sections = document.querySelectorAll(sectionSeletctor);

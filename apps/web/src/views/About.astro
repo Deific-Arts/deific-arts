@@ -1,0 +1,104 @@
+<deific-about class="view">
+  <div class="about">
+      <img src="/assets/hasanirogers.webp" alt="Hasani Rogers, owner of Deific Arts, LLC">
+      <div>
+        <h2>I BUILD</h2>
+        <deific-builds></deific-builds>
+      </div>
+  </div>
+  <div class="description">
+    <p>
+     My name is Hasani and I'm a full-stack developer with a creative edge. This means that not only can I build your site or app, but I can also help you with your marketing and branding. Think of me as a partner who can help you build and grow your business online. I have over 20 years of industry experience and I use that to help small businesses flourish online.
+    </p>
+  </div>
+</deific-about>
+<style>
+  deific-about {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 1rem;
+    width: 100%;
+    height: calc(100vh - 230px);
+    scroll-snap-align: start;
+    text-align: center;
+    position: relative;
+
+    & > * {
+      width: 100%;
+      height: 100%;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      @media (min-width: 1024px) {
+        padding: 2rem;
+      }
+    }
+
+
+
+    & > * {
+      margin: 0 auto;
+      max-width: 1280px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      opacity: 0.5;
+      margin: 0;
+      padding: 0;
+      letter-spacing: 2px;
+    }
+
+    img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    ul {
+      display: flex;
+      gap: 1rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+    }
+
+    .description {
+      font-size: 1.25rem;
+      text-align: left;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+
+    .about {
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 1.5rem;
+
+      width: 100%;
+      height: auto;
+      margin: 0 auto;
+      font-size: 2rem;
+      text-align: left;
+      flex-direction: column;
+      justify-content: center;
+
+      @media screen and (min-width: 769px) {
+        flex-direction: row;
+        justify-content: flex-start
+      }
+
+    .Typewriter__cursor {
+      color: var(--color-primary);
+    }
+  }
+</style>

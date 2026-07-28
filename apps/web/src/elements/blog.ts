@@ -1,9 +1,8 @@
 
 import { LitElement, html, css } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import { animate, scroll, inView } from "motion";
+import { animate, scroll } from "motion";
 import { repeat } from '../scripts/repeat';
-import { isElementInView } from '../scripts/intersection';
 
 type TypeAxis = 'x' | 'y';
 type TypeScrollDirection = 'forward' | 'backward';

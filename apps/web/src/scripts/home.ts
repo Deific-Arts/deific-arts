@@ -1,77 +1,21 @@
 import Typewriter from 'typewriter-effect/dist/core';
-import { isElementInView } from "./intersection";
 import { deepLink } from "./navigation";
 
-const isHomepage = window.location.pathname === '/';
+const isHomepage = !!document.querySelector('deific-home');
+const scrollSnapContainer = document.querySelector('main') as HTMLElement;
 
-const inViewElements = () => {
-  const deificHome = document.querySelector('deific-home') as HTMLElement;
-  const deificAbout = document.querySelector('deific-about') as HTMLElement;
-  const deificServices = document.querySelector('deific-services') as HTMLElement;
-  const deificWork = document.querySelector('deific-work') as HTMLElement;
-  const deificGetStarted = document.querySelector('deific-consultation') as HTMLElement;
-  const deificContact = document.querySelector('deific-contact') as HTMLElement;
-  const deificBlog = document.querySelector('deific-blog') as HTMLElement;
-  const deificSkills = document.querySelector('deific-skills') as HTMLElement;
+scrollSnapContainer.addEventListener('scrollsnapchange', (event) => {
+  const snappedChild = (event as any).snapTargetBlock;
+  const view = snappedChild.tagName.toLowerCase().replace('deific-', '');
 
-  deificHome && isElementInView(deificHome, (inView) => {
-    if (inView) {
-      window.history.replaceState(null, '', '/');
-      document.documentElement.dataset.page = 'home';
-    }
-  }, { threshold: .75 });
+  window.history.replaceState(null, '', `/${view}/`);
+  document.documentElement.dataset.page = view;
+  document.querySelector('deific-background')?.setAttribute('section', view);
 
-  deificAbout && isElementInView(deificAbout, (inView) => {
-    if (inView) {
-      iBuild();
-      window.history.replaceState(null, '', '/about/');
-      document.documentElement.dataset.page = 'about';
-    }
-  }, { threshold: .75 });
-
-  deificServices && isElementInView(deificServices, (inView) => {
-    if (inView) {
-      window.history.replaceState(null, '', '/services/');
-      document.documentElement.dataset.page = 'services';
-    }
-  }, { threshold: .75 });
-
-  deificWork && isElementInView(deificWork, (inView) => {
-    if (inView) {
-      window.history.replaceState(null, '', '/work/');
-      document.documentElement.dataset.page = 'work';
-    }
-  }, { threshold: .75 });
-
-  deificGetStarted && isElementInView(deificGetStarted, (inView) => {
-    if (inView) {
-      window.history.replaceState(null, '', '/consultation/');
-      document.documentElement.dataset.page = 'consultation';
-    }
-  }, { threshold: .75 });
-
-  deificContact && isElementInView(deificContact, (inView) => {
-    if (inView) {
-      window.history.replaceState(null, '', '/contact/');
-      document.documentElement.dataset.page = 'contact';
-    }
-  }, { threshold: .75 });
-
-  // you must set any inView logic in the blog component itself
-  // deificBlog && isElementInView(deificBlog, (inView) => {
-  //   if (inView) {
-  //     window.history.replaceState(null, '', '/blog/');
-  //     document.documentElement.dataset.page = 'blog';
-  //   }
-  // }, { threshold: .75 });
-
-  deificSkills && isElementInView(deificSkills, (inView) => {
-    if (inView) {
-      window.history.replaceState(null, '', '/skills/');
-      document.documentElement.dataset.page = 'skills';
-    }
-  }, { threshold: .75 })
-}
+  if (view === 'about') {
+    iBuild();
+  }
+});
 
 const scrollToCurrent = () => {
   const { pathname } = window.location;
@@ -93,7 +37,7 @@ const iBuild = () => {
 }
 
 const initApp = () => {
-  inViewElements();
+  // inViewElements();
   scrollToCurrent();
 }
 
@@ -101,6 +45,7 @@ document.addEventListener('DOMContentLoaded', initApp);
 
 
 document.querySelectorAll('footer nav a').forEach((link) => {
+  console.log('isHomepage', isHomepage);
   if (isHomepage) {
     link.addEventListener('click', (event) => {
       event.preventDefault();

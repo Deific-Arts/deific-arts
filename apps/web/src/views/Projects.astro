@@ -1,0 +1,47 @@
+---
+import { getCollection } from "astro:content";
+
+const projects = await getCollection("projects");
+---
+
+<deific-projects projects={JSON.stringify(projects)}>
+  {
+    projects.map((project, index: number) => (
+      <div slot={`slide-${index}`}>
+        <a href={`/projects/${project.id}/`} data-index={index}>
+          <img src={project.data.image} alt={project.data.heading} />
+        </a>
+      </div>
+    ))
+  }
+</deific-projects>
+<style>
+  deific-projects {
+    scroll-snap-align: start;
+
+    [slot] {
+      display: grid;
+    }
+
+    img {
+      width: auto;
+      height: 50vh;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+</style>
+<script>
+ const projectsElement = document.querySelector('deific-projects');
+ const slides = projectsElement.querySelectorAll('a');
+
+ slides.forEach((slide) => {
+  slide.addEventListener('mouseenter', () => {
+    projectsElement.currentSlide = parseInt(slide.getAttribute('data-index')!);
+  });
+ });
+</script>
