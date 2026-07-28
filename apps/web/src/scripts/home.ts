@@ -45,7 +45,6 @@ document.addEventListener('DOMContentLoaded', initApp);
 
 
 document.querySelectorAll('footer nav a').forEach((link) => {
-  console.log('isHomepage', isHomepage);
   if (isHomepage) {
     link.addEventListener('click', (event) => {
       event.preventDefault();
