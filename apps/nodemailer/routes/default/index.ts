@@ -29,7 +29,7 @@ const DOMAIN_TOKENS = {
 // Nodemailer transporter setup
 const transporter = nodemailer.createTransport({
   host: process.env.EMAIL_HOST,
-  port: 465,
+  port: process.env.EMAIL_PORT ? parseInt(process.env.EMAIL_PORT) : 465,
   secure: true,
   auth: {
     user: process.env.EMAIL_USER,
