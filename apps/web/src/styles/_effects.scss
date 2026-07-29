@@ -24,7 +24,8 @@ deific-cta {
   }
 }
 
-[data-page="home"] {
+[data-page="home"],
+[data-page="started"] {
   deific-cta {
     kemet-button {
       opacity: 0;

@@ -6,6 +6,7 @@ import Services from '../views/Services.astro';
 import Faqs from '../views/FAQS.astro';
 import Skills from '../views/Skills.astro';
 import Projects from '../views/Projects.astro';
+import Started from '../views/Started.astro';
 ---
 
 <deific-cta>
@@ -20,6 +21,7 @@ import Projects from '../views/Projects.astro';
 <Projects />
 <LatestBlogPosts postsToShow={3} />
 <Skills />
+<Started />
 
 <deific-background></deific-background>
 <style>
@@ -36,47 +38,4 @@ import Projects from '../views/Projects.astro';
       text-shadow: 1px 1px #000000aa;
     }
   }
-
-
-
-
-  .view {
-    display: flex;
-    padding: 1rem;
-    width: 100%;
-    height: calc(100vh - 230px);
-    scroll-snap-align: start;
-    text-align: center;
-    position: relative;
-
-    & > * {
-      width: 100%;
-      height: 100%;
-      margin: auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
-      @media (min-width: 1024px) {
-        padding: 2rem;
-      }
-    }
-
-    h2 {
-      font-size: clamp(1rem, 5vw, 2rem);
-      white-space: nowrap;
-      margin: 0;
-      line-height: 1;
-
-      span {
-        display: block;
-        font-size: 0.5em;
-        opacity: 0.5;
-      }
-    }
-  }
-
-
-
 </style>

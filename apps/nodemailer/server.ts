@@ -25,7 +25,17 @@ app.set('view engine', 'liquid');
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+
+
+// Redirect trailing slashes (only for GET requests)
+app.use((req: Request, res: Response, next: NextFunction) => {
+  if (req.method === 'GET' && req.path !== '/' && !req.path.endsWith('/') && !req.path.includes('.')) {
+    const query = req.url.slice(req.path.length);
+    res.redirect(301, req.path + '/' + query);
+  } else {
+    next();
+  }
+});
 
 // CORS middleware for cross-domain requests
 app.use((req: Request, res: Response, next: NextFunction) => {
@@ -62,8 +72,23 @@ export async function loadRoutes() {
       const tsPath = `${routePath}/index.ts`;
       const cjsPath = `${routePath}/index.cjs`;
       const importPath = fs.existsSync(tsPath) ? tsPath : cjsPath;
-      const routeModule = await import(`file://${importPath}`);
-      app.use(`/${routeName}`, routeModule.default || routeModule);
+
+      let router;
+      if (fs.existsSync(tsPath)) {
+        const routeModule = await import(importPath);
+        router = routeModule.default || routeModule;
+      } else {
+        const routeModule = require(importPath);
+        router = routeModule.default || routeModule;
+      }
+
+      console.log(`Router type:`, typeof router, router?.name);
+
+      app.use(`/${routeName}`, (req: Request, res: Response, next: NextFunction) => {
+        console.log(`[Route /${routeName}] ${req.method} ${req.url} (path: ${req.path})`);
+        next();
+      });
+      app.use(`/${routeName}`, router);
       console.log(`✓ Mounted route: /${routeName} -> ${routePath}`);
     } catch (error) {
       console.error(`✗ Failed to mount route /${routeName}:`, error);
@@ -77,10 +102,12 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   res.status(500).json({ message: 'Something went wrong!' });
 });
 
-// 404 handler
-app.use('*', (req: Request, res: Response) => {
-  res.status(404).json({ message: 'Route not found' });
-});
-
+// 404 handler (must be registered after routes are loaded)
+export function setup404Handler() {
+  app.use('*', (req: Request, res: Response) => {
+    console.log('[404 Handler]', req.method, req.url);
+    res.status(404).json({ message: 'Route not found' });
+  });
+}
 
 export { app, PORT };
