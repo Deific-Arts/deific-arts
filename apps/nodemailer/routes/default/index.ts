@@ -2,7 +2,6 @@ import dotenv from 'dotenv';
 dotenv.config();
 import express from 'express';
 import type { Router, Request, Response } from 'express';
-import * as nodemailer from 'nodemailer';
 import jwt from 'jsonwebtoken';
 import Mailjet from 'node-mailjet';
 
@@ -18,7 +17,7 @@ declare global {
 const router = express.Router();
 
 // Hardcoded JWT secret for demonstration
-const JWT_SECRET: string = process.env.JWT_SECRET || 'hardcoded-jwt-secret';
+const JWT_SECRET: string = process.env.DEFAULT_JWT_SECRET || 'hardcoded-jwt-secret';
 
 // Allowed domains and their tokens
 const DOMAIN_TOKENS = {
@@ -29,8 +28,8 @@ const DOMAIN_TOKENS = {
 
 // Mailjet API client setup
 const mailjet = new Mailjet({
-  apiKey: process.env.EMAIL_USER,
-  apiSecret: process.env.EMAIL_PASS
+  apiKey: process.env.DEFAULT_MAILJET_API_KEY,
+  apiSecret: process.env.DEFAULT_MAILJET_API_SECRET
 });
 
 // Validate token middleware
@@ -80,7 +79,7 @@ router.post('/', validateToken, async (req: Request, res: Response) => {
       Messages: [
         {
           From: {
-            Email: process.env.EMAIL_USER,
+            Email: process.env.DEFAULT_EMAIL_FROM,
             Name: fullname
           },
           ReplyTo: {
@@ -93,7 +92,7 @@ router.post('/', validateToken, async (req: Request, res: Response) => {
           ],
           Subject: subject || `${fullname} has reached out to you.`,
           TextPart: text,
-          HTMLPart: html || `<p>${text}</p>`
+          HTMLPart: html || `<div>${text}</div>`
         }
       ]
     };
