@@ -1,7 +1,16 @@
 import { css, html, LitElement } from 'lit';
+import { property, queryAll, state } from 'lit/decorators.js';
 
 class DeificContact extends LitElement {
   static styles = [css`
+    :host([status=error]) {
+      --status-color: red;
+    }
+
+    :host([status=success]) {
+      --status-color: green;
+    }
+
     form {
       margin-top: 2rem;
       padding: 3rem;
@@ -33,7 +42,28 @@ class DeificContact extends LitElement {
     kemet-textarea::part(textarea) {
       color: white;
     }
+
+    .message {
+      font-size: 1.1rem;
+      color: var(--status-color, white);
+      padding: 0;
+      margin: 0;
+      text-align: center;
+    }
   `];
+
+  @property({ type: String, reflect: true })
+  status: 'idle' | 'success' | 'error' = 'idle';
+
+  @state()
+  private isLoading = false;
+
+  @state()
+  private statusMessage: string | null = null;
+
+  @queryAll('kemet-input, kemet-textarea, input')
+  private formElements!: NodeListOf<HTMLInputElement | HTMLTextAreaElement>;
+
   render() {
     return html`
       <form @submit=${this.handleSubmit}>
@@ -52,6 +82,7 @@ class DeificContact extends LitElement {
             <kemet-textarea slot="input" name="text" required></kemet-textarea>
           </kemet-field>
           <small>* All fields are required</small>
+          ${this.statusMessage ? html`<p class="message">${this.statusMessage}</p>` : ''}
           <kemet-button type="submit" rounded="pill">Reach out to me</kemet-button>
         </fieldset>
         <input type="hidden" name="to" value="contact@deificarts.com">
@@ -59,12 +90,41 @@ class DeificContact extends LitElement {
     `;
   }
 
-  private handleSubmit(event: Event) {
+  private async handleSubmit(event: Event) {
     event.preventDefault();
-    fetch('https://email.deificarts.com/default', {
-      method: 'POST',
-      body: new FormData(event.target as HTMLFormElement)
+    this.isLoading = true;
+    this.statusMessage = 'Sending...'
+
+    const payload: Record<string, string> = {};
+
+    this.formElements.forEach((element) => {
+      const name = element.getAttribute('name');
+      const value = element.value;
+      if (name && value) {
+        payload[name] = value;
+      }
     });
+
+    const response = await fetch('https://email.deificarts.com/default/', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer public-token-deificarts',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+
+    this.isLoading = false;
+
+    if (response.ok) {
+      this.status = 'success';
+      this.statusMessage = 'I got your message and will get back to you soon!';
+    } else {
+      const error = await response.json();
+      this.status = 'error';
+      this.statusMessage = error.message;
+      console.error('Failed to send email', error);
+    }
   }
 }
 
