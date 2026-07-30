@@ -4,6 +4,7 @@ import express from 'express';
 import type { Router, Request, Response } from 'express';
 import * as nodemailer from 'nodemailer';
 import jwt from 'jsonwebtoken';
+import Mailjet from 'node-mailjet';
 
 // Extend Request interface to include domain
 declare global {
@@ -26,26 +27,10 @@ const DOMAIN_TOKENS = {
 };
 
 
-// Nodemailer transporter setup
-const port = parseInt(process.env.EMAIL_PORT || '587');
-console.log('SMTP Config:', {
-  host: process.env.EMAIL_HOST,
-  port: port,
-  user: process.env.EMAIL_USER,
-  pass: process.env.EMAIL_PASS ? '***SET***' : '***MISSING***'
-});
-
-const transporter = nodemailer.createTransport({
-  host: process.env.EMAIL_HOST,
-  port: port,
-  secure: false, // STARTTLS for port 587
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-  tls: {
-    rejectUnauthorized: false
-  }
+// Mailjet API client setup
+const mailjet = new Mailjet({
+  apiKey: process.env.EMAIL_USER,
+  apiSecret: process.env.EMAIL_PASS
 });
 
 // Validate token middleware
@@ -92,20 +77,33 @@ router.post('/', validateToken, async (req: Request, res: Response) => {
     }
 
     const mailOptions = {
-      from: `"${fullname}" <${process.env.EMAIL_USER}>`,
-      replyTo: replyemail,
-      to: to,
-      subject: subject || `${fullname} has reached out to you.`,
-      text: text,
-      html: html || `<p>${text}</p>`
+      Messages: [
+        {
+          From: {
+            Email: process.env.EMAIL_USER,
+            Name: fullname
+          },
+          ReplyTo: {
+            Email: replyemail
+          },
+          To: [
+            {
+              Email: to
+            }
+          ],
+          Subject: subject || `${fullname} has reached out to you.`,
+          TextPart: text,
+          HTMLPart: html || `<p>${text}</p>`
+        }
+      ]
     };
 
-    const info = await transporter.sendMail(mailOptions);
+    const info = await mailjet.post('send', { version: 'v3.1' }).request(mailOptions);
 
     res.json({
       success: true,
       message: 'Email sent successfully',
-      messageId: info.messageId
+      messageId: (info.body as any).Messages[0].MessageID
     });
 
   } catch (error: any) {
