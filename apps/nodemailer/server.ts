@@ -105,7 +105,6 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 // 404 handler (must be registered after routes are loaded)
 export function setup404Handler() {
   app.use('*', (req: Request, res: Response) => {
-    console.log('[404 Handler]', req.method, req.url);
     res.status(404).json({ message: 'Route not found' });
   });
 }

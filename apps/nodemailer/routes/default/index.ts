@@ -2,8 +2,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 import express from 'express';
 import type { Router, Request, Response } from 'express';
-import * as nodemailer from 'nodemailer';
 import jwt from 'jsonwebtoken';
+import Mailjet from 'node-mailjet';
 
 // Extend Request interface to include domain
 declare global {
@@ -17,7 +17,7 @@ declare global {
 const router = express.Router();
 
 // Hardcoded JWT secret for demonstration
-const JWT_SECRET: string = process.env.JWT_SECRET || 'hardcoded-jwt-secret';
+const JWT_SECRET: string = process.env.DEFAULT_JWT_SECRET || 'hardcoded-jwt-secret';
 
 // Allowed domains and their tokens
 const DOMAIN_TOKENS = {
@@ -26,15 +26,10 @@ const DOMAIN_TOKENS = {
 };
 
 
-// Nodemailer transporter setup
-const transporter = nodemailer.createTransport({
-  host: process.env.EMAIL_HOST,
-  port: parseInt(process.env.EMAIL_PORT || '587'),
-  secure: false,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
+// Mailjet API client setup
+const mailjet = new Mailjet({
+  apiKey: process.env.DEFAULT_MAILJET_API_KEY,
+  apiSecret: process.env.DEFAULT_MAILJET_API_SECRET
 });
 
 // Validate token middleware
@@ -81,20 +76,33 @@ router.post('/', validateToken, async (req: Request, res: Response) => {
     }
 
     const mailOptions = {
-      from: `"${fullname}" <${process.env.EMAIL_USER}>`,
-      replyTo: replyemail,
-      to: to,
-      subject: subject || `${fullname} has reached out to you.`,
-      text: text,
-      html: html || `<p>${text}</p>`
+      Messages: [
+        {
+          From: {
+            Email: process.env.DEFAULT_EMAIL_FROM,
+            Name: fullname
+          },
+          ReplyTo: {
+            Email: replyemail
+          },
+          To: [
+            {
+              Email: to
+            }
+          ],
+          Subject: subject || `${fullname}, is interested in Deific Arts LLC`,
+          TextPart: text,
+          HTMLPart: html || `<div>${text}</div>`
+        }
+      ]
     };
 
-    const info = await transporter.sendMail(mailOptions);
+    const info = await mailjet.post('send', { version: 'v3.1' }).request(mailOptions);
 
     res.json({
       success: true,
       message: 'Email sent successfully',
-      messageId: info.messageId
+      messageId: (info.body as any).Messages[0].MessageID
     });
 
   } catch (error: any) {
