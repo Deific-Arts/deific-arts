@@ -90,7 +90,7 @@ router.post('/', validateToken, async (req: Request, res: Response) => {
               Email: to
             }
           ],
-          Subject: subject || `${fullname} has reached out to you.`,
+          Subject: subject || `${fullname}, is interested in Deific Arts LLC`,
           TextPart: text,
           HTMLPart: html || `<div>${text}</div>`
         }
