@@ -24,7 +24,7 @@ const styles = css`
   }
 
   section {
-    height: 500vh;
+    height: 400vh;
     position: relative;
   }
 
@@ -76,6 +76,7 @@ const styles = css`
     flex-direction: column;
     width: 33vw;
     height: 100vh;
+    margin-top: -6vh;
   }
 
   deific-backgrounds {

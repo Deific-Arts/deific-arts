@@ -36,6 +36,7 @@ export default class DeificSkills extends LitElement {
 
     figcaption {
       font-size: 2rem;
+      line-height: 1.2;
     }
 
     .deck {
@@ -345,13 +346,16 @@ export default class DeificSkills extends LitElement {
         </div>
         <div class="card">
           <figure>
-            <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="128" height="128" viewBox="0 0 256 319" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="a" d="M9.87 293.32.01 30.57a16 16 0 0 1 15-16.57L238.49.03a16 16 0 0 1 17 15.98v286.3a16 16 0 0 1-16.71 16l-213.63-9.6a16 16 0 0 1-15.28-15.39"/></defs><mask id="b" fill="#fff"><use href="#a"/></mask><use fill="#ff4785" href="#a"/><path fill="#fff" d="m188.67 39.13 1.52-36.72L220.9 0l1.32 37.86a2.39 2.39 0 0 1-3.87 1.96l-11.83-9.32-14.02 10.63a2.39 2.39 0 0 1-3.83-2m-39.26 80.85c0 6.23 41.95 3.24 47.58-1.13 0-42.4-22.76-64.68-64.42-64.68s-65 22.62-65 56.56c0 59.12 79.78 60.25 79.78 92.5 0 9.05-4.44 14.42-14.19 14.42-12.7 0-17.73-6.49-17.14-28.55 0-4.78-48.45-6.28-49.93 0-3.76 53.47 29.55 68.9 67.66 68.9 36.94 0 65.9-19.69 65.9-55.33 0-63.36-80.97-61.66-80.97-93.06 0-12.72 9.46-14.42 15.07-14.42 5.91 0 16.55 1.04 15.66 24.8" mask="url(#b)"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 256 256" fill="none">
+              <rect width="256" height="256" rx="60" fill="#242938"/>
+              <path d="M128 34L223 198.853H33L128 34Z" fill="white"/>
+            </svg>
             <figcaption>Infrastructure</figcaption>
             <p>I work with Vercel and Hostinger most of the time to deploy apps and manage releases. I also use GitHub Actions for CI/CD pipelines.</p>
           </figure>
         </div>
       </div>
-      <p>(Swipe or click and drag to navigate the cards.)</p>
+      <p>(Swipe or click and drag to navigate)</p>
     `;
   }
 }

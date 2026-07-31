@@ -45,31 +45,53 @@ const posts = (await getCollection('blog')).sort(
 
     [slot] {
       display: grid;
+      margin-top: -10vh;
+      padding: 1rem;
+
+      @media (width > 1024px) {
+        margin-top: 0;
+      }
     }
 
     h3 {
       display: inline;
-      font-size: 2rem;
+      font-size: 1.25rem;
+      line-height: 1.5;
       padding: 0 4rem 0 0;
       box-sizing: border-box;
       margin: 0;
-      max-width: 50vw;
+      max-width: 100%;
+
+      @media (width > 1024px) {
+         font-size: 2rem;
+         max-width: 50vw;
+      }
 
       kemet-button {
+        display: none;
         transform: scale(0.8);
+
+        @media (width > 1024px) {
+          display: inline;
+        }
       }
     }
 
     img {
       width: auto;
+      margin-top: 1rem;
       max-height: 25vh;
     }
 
     .date {
-      display: inline-flex;
+      display: none;
       font-size: 0.9rem;
       align-items: center;
       margin-bottom: 1rem;
+
+      @media (width > 1024px) {
+        display: inline-flex;
+      }
     }
 
     .action {
@@ -77,12 +99,22 @@ const posts = (await getCollection('blog')).sort(
       gap: 2rem;
       align-items: center;
       grid-template-columns: 1fr auto;
-      margin-top: 1rem;
-      max-width: 50vw;
+
+      max-width: 100%;
 
       p {
         font-size: 1.1rem;
         text-align: justify;
+
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      @media (width > 1024px) {
+         max-width: 50vw;
+         margin-top: 1rem;
       }
     }
   }

@@ -3,44 +3,44 @@ import { customElement } from 'lit/decorators.js';
 
 const styles = css`
   svg {
-      position:relative;
-      width: 100%;
-      height: 40px;
-      margin-bottom: -7px;
-      min-height: 40px;
-      max-height: 150px;
+    position:relative;
+    width: 100%;
+    height: 40px;
+    margin-bottom: -7px;
+    min-height: 40px;
+    max-height: 150px;
   }
 
   @media (min-width: 768px) {
-      svg {
-          height: 15vh;
-          min-height: 100px;
-          max-height: 120px;
-      }
+    svg {
+      height: 50vh;
+      min-height: 100px;
+      max-height: 120px;
+    }
   }
 
   g > use {
-      animation: move 25s cubic-bezier(.55,.5,.45,.5) infinite;
+    animation: move 25s cubic-bezier(.55,.5,.45,.5) infinite;
   }
 
   g > use:nth-child(1) {
-      animation-delay: -2s;
-      animation-duration: 7s;
+    animation-delay: -2s;
+    animation-duration: 7s;
   }
 
   g > use:nth-child(2) {
-      animation-delay: -3s;
-      animation-duration: 10s;
+    animation-delay: -3s;
+    animation-duration: 10s;
   }
 
   g > use:nth-child(3) {
-      animation-delay: -4s;
-      animation-duration: 13s;
+    animation-delay: -4s;
+    animation-duration: 13s;
   }
 
   g > use:nth-child(4) {
-      animation-delay: -5s;
-      animation-duration: 20s;
+    animation-delay: -5s;
+    animation-duration: 20s;
   }
 
   @keyframes move {

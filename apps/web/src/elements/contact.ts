@@ -12,18 +12,27 @@ class DeificContact extends LitElement {
     }
 
     form {
-      margin-top: 2rem;
-      padding: 3rem;
+      margin-top: 1rem;
+      padding: 1rem;
       background: rgba(0, 0, 0, 0.25);
+
+      @media (width > 1024px) {
+        margin-top: 2rem;
+        padding: 3rem;
+      }
     }
 
     fieldset {
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      gap: 1rem;
       border: none;
       padding: 0;
       margin: 0;
+
+      @media (width > 1024px) {
+        gap: 2rem;
+      }
     }
 
     kemet-button {

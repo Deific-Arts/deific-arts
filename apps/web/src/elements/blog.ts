@@ -18,7 +18,7 @@ const styles = css`
   }
 
   section {
-    height: 500vh;
+    height: 300vh;
     position: relative;
   }
 

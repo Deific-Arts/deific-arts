@@ -26,6 +26,7 @@ import Started from '../views/Started.astro';
 <deific-background></deific-background>
 <style>
   deific-cta {
+    display: none;
     position: fixed;
     top: 2rem;
     right: 2rem;
@@ -36,6 +37,10 @@ import Started from '../views/Started.astro';
       font-weight: bold;
       text-transform: uppercase;
       text-shadow: 1px 1px #000000aa;
+    }
+
+    @media (width > 1024px) {
+      display: inline-flex;
     }
   }
 </style>

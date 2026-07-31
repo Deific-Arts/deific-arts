@@ -1,7 +1,7 @@
 import Typewriter from 'typewriter-effect/dist/core';
-import { deepLink } from "./navigation";
+// import { deepLink } from "./navigation";
 
-const isHomepage = !!document.querySelector('deific-home');
+// const isHomepage = !!document.querySelector('deific-home');
 const scrollSnapContainer = document.querySelector('main') as HTMLElement;
 
 scrollSnapContainer.addEventListener('scrollsnapchange', (event) => {
@@ -44,12 +44,12 @@ const initApp = () => {
 document.addEventListener('DOMContentLoaded', initApp);
 
 
-document.querySelectorAll('footer nav a').forEach((link) => {
-  if (isHomepage) {
-    link.addEventListener('click', (event) => {
-      event.preventDefault();
-      const slug = link.getAttribute('href') ?? '/';
-      deepLink(event, slug);
-    })
-  }
-})
+// document.querySelectorAll('footer nav a').forEach((link) => {
+//   if (isHomepage) {
+//     link.addEventListener('click', (event) => {
+//       event.preventDefault();
+//       const slug = link.getAttribute('href') ?? '/';
+//       deepLink(event, slug);
+//     })
+//   }
+// })
