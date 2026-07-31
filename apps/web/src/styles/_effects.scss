@@ -1,4 +1,4 @@
-kemet-button[link="/blog/"] {
+kemet-button[link="/blog/all"] {
   position: fixed;
   right: 2rem;
   bottom: 285px;
@@ -9,7 +9,7 @@ kemet-button[link="/blog/"] {
 
 
 [data-page="blog"] {
-  kemet-button[link="/blog/"] {
+  kemet-button[link="/blog/all"] {
     opacity: 1;
     pointer-events: auto;
   }

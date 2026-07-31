@@ -62,6 +62,16 @@ export class DeificBackground extends LitElement {
       --opacity: .5;
     }
 
+    :host([section="blog-all"]) {
+      --height: 100vh;
+      --opacity: .95;
+    }
+
+    :host([section="blog-post"]) {
+      --height: 100vh;
+      --opacity: .95;
+    }
+
     kemet-button {
       position: fixed;
       top: 2rem;

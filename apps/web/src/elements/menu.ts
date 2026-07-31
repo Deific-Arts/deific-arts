@@ -103,10 +103,14 @@ export class DeificMenu extends LitElement {
   }
 
   private handleLinkSelect(event: Event) {
-    if (!isHomepage) return;
-    event.preventDefault();
     const slug = (event.target as HTMLSelectElement).value;
-    this.page = slug;
-    deepLink(event, slug);
+
+    if (isHomepage) {
+      event.preventDefault();
+      this.page = slug;
+      deepLink(event, slug);
+    }
+
+    window.location.href = `/${slug}`;
   }
 }

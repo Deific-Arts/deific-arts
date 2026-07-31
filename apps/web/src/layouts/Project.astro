@@ -2,7 +2,7 @@
 import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
+import Logo from '../components/Logo.astro';
 
 import '../styles/_base.scss';
 import '../styles/_animations.scss';
@@ -19,28 +19,31 @@ const { heading, description, image, skills, link, github } = Astro.props;
 	</head>
 	<body>
 		<main>
-      <Header />
+
 			<article>
         <header>
-          <h1>{heading}</h1>
-          <aside>
-            {description}&nbsp;
-            {github && <a href={github} target="_blank">View on Github</a>}
-          </aside>
+          <Logo />
+          <div>
+            <h1>{heading}</h1>
+            <aside>
+              {description}&nbsp;
+              {github && <a href={github} target="_blank">View on Github</a>}
+            </aside>
+          </div>
         </header>
         <br />
-        <me-project-figure>
+        <deific-figure>
           {(image && !link) && <img width={1020} height={510} src={image} alt={heading} />}
           {(image && link) && <a href={link} target="_blank"><img src={image} alt={heading} /></a>}
-        </me-project-figure>
-        <me-project-skills>
+        </deific-figure>
+        <deific-skills>
           <span>Skill used on this projects:</span>
           <ul>
             {skills && skills.map((skill: unknown) => (
               <li><em>{skill}</em>,</li>
             ))}
           </ul>
-        </me-project-skills>
+        </deific-skills>
         <slot />
 			</article>
 		</main>
@@ -49,8 +52,21 @@ const { heading, description, image, skills, link, github } = Astro.props;
   <style>
     article {
       max-width: 1280px;
+      min-height: calc(100vh - 234px);
       margin: 0 auto;
       padding: 0 2rem;
+
+      header {
+        max-width: 1280px;
+        justify-content: space-between;
+
+        @media (width > 1024px) {
+          display: flex;
+          align-items: center;
+          gap: 2rem;
+          text-align: right;
+        }
+      }
     }
 
     ul {
@@ -65,8 +81,34 @@ const { heading, description, image, skills, link, github } = Astro.props;
       opacity: 0.7;
     }
 
+    h1 {
+      margin: 1rem 0 0 0;
+    }
+
+    deific-figure {
+      img {
+        width: 100%;
+        height: auto;
+        max-height: 50vh;
+        object-fit: cover;
+      }
+    }
+
+    deific-skills {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      overflow: scroll;
+      white-space: nowrap;
+
+      @media (width > 1024px) {
+        overflow: auto;
+        white-space: normal;
+      }
+    }
   </style>
   <script>
     import '../elements/waves';
+    import '../elements/menu';
   </script>
 </html>

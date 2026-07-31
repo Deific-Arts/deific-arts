@@ -35,7 +35,7 @@ const posts = (await getCollection('blog')).sort(
     })
   }
 </deific-blog>
-<kemet-button rounded="pill" variant="outlined" link="/blog/" polarity="dark">
+<kemet-button rounded="pill" variant="outlined" link="/blog/all" polarity="dark">
   <kemet-icon-bootstrap icon="chevron-right" slot="right"></kemet-icon-bootstrap>
   View all of my blog posts
 </kemet-button>
@@ -72,7 +72,7 @@ const posts = (await getCollection('blog')).sort(
         transform: scale(0.8);
 
         @media (width > 1024px) {
-          display: inline;
+          display: inline-flex;
         }
       }
     }
