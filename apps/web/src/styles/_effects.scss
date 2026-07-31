@@ -1,0 +1,35 @@
+kemet-button[link="/blog/all"] {
+  position: fixed;
+  right: 2rem;
+  bottom: 285px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+
+[data-page="blog"] {
+  kemet-button[link="/blog/all"] {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+
+deific-cta {
+  kemet-button {
+    opacity: 1;
+    pointer-events: auto;
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+[data-page="home"],
+[data-page="started"] {
+  deific-cta {
+    kemet-button {
+      opacity: 0;
+      pointer-events: auto;
+    }
+  }
+}

@@ -1,0 +1,110 @@
+---
+const faqs = [
+  {
+    question: "How much does a website cost?",
+    answer: "The cost of a website varies depending on the complexity and features required. For a basic brouchure site for a small business, I offer a no money up front and low cost subscription model. Think of me as your consultant."
+  },
+  {
+    question: "How long does it take to build a website?",
+    answer: "Timelines vary by scope but if you're doing a simple brochure site, I can typically have it done in about a week."
+  },
+  {
+    question: "Will I be able to update the site myself?",
+    answer: "The simple answer is yes. The reality is that it depends on the type of site I build. To update a site yourself, you need a CMS. CMS projects take longer and there could be more costs involved. I find that the average business owner would rather have me update the site for them."
+  },
+  {
+    question: "Do you offer ongoing support and maintenance?",
+    answer: "Yes, it's built in your subscription for free."
+  },
+  {
+    question: "I'm not sure what I want/need on my site.",
+    answer: "I'll help you with content. Just provide me with as much direction as you like and we'll work together to create a site that works for you."
+  },
+  {
+    question: "I'm a recruiter interested in vetting you for a project.",
+    answer: "First and foremost, I'm an experienced software engineer and I work freelance contracts as well. Check out my projects to get a feel for my talent."
+  }
+]
+---
+
+<deific-faqs>
+  {
+    faqs.map((faq) => (
+      <deific-faq>
+      <kemet-accordion>
+        <kemet-accordion-panel>
+          <h3 slot="trigger">{faq.question}</h3>
+          <kemet-icon-bootstrap slot="icon" icon="caret-down" size="18"></kemet-icon-bootstrap>
+          <p slot="body">{faq.answer}</p>
+        </kemet-accordion-panel>
+      </kemet-accordion>
+      </deific-faq>
+    ))
+  }
+</deific-faqs>
+<style>
+  deific-faqs {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    width: 100%;
+    height: 100vh;
+    max-width: 1440px;
+    margin: 0 auto;
+    scroll-snap-align: start;
+    position: relative;
+
+    @media (min-width: 1024px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    & > * {
+      width: 100%;
+      height: auto;
+      margin: 0 auto;
+      text-align: left;
+      justify-content: flex-start;
+
+      @media (width > 1024px) {
+        padding: 2rem;
+      }
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      max-width: 164px;
+      object-fit: cover;
+    }
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 600;
+
+      @media (width > 1024px) {
+        font-size: 1.25rem;
+      }
+    }
+
+    deific-faq {
+      display: flex;
+      flex-direction: column;
+    }
+
+    deific-faq:last-child {
+      kemet-accordion-panel {
+        background: #00000080;
+        border: 2px dashed var(--color-border);
+      }
+    }
+
+    kemet-accordion-panel {
+      padding: 1rem;
+
+      @media (width > 1024px) {
+        padding: 1.5rem 1rem;
+      }
+    }
+  }
+</style>

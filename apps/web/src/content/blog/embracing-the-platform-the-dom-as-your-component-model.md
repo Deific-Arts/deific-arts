@@ -7,6 +7,7 @@ tags:
 - web components
 - vanilla javascript
 excerpt: A while back I wrote a blog discussing a return to web standards since “React Brain” has taken over our thinking about what a component is. This is the follow up. In this blog I’ll be discussing concepts around using the DOM as your model for a component.
+banner: /posts/embracing-the-platform-the-dom-as-your-component-model/banner.png
 ---
 
 ## Cleaning up some terms and concepts

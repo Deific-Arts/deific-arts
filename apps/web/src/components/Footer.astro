@@ -5,13 +5,7 @@ const currentYear = new Date().getFullYear()
 <footer>
   <deific-waves></deific-waves>
   <section>
-    <nav>
-      <a href="/about">About</a>
-      <a href="/services">Services</a>
-      <a href="/work">Work</a>
-      <a href="/blog">Blog</a>
-      <a href="/consultation">Consultation</a>
-    </nav>
+    <deific-menu></deific-menu>
     <p>&copy; {currentYear} Deific Arts, LLC.</p>
   </section>
 </footer>
@@ -38,22 +32,18 @@ const currentYear = new Date().getFullYear()
       background: var(--color-white);
       padding: 1rem;
       display: flex;
+      height: 20vh;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+
+      @media (width > 1024px) {
+        height: auto;
+      }
     }
 
     p {
       color: var(--color-background);
-    }
-
-    nav {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      margin-top: 2rem;
     }
   }
 </style>

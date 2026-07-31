@@ -5,7 +5,7 @@ import { Image } from 'astro:assets';
 import BaseHead from '../components/BaseHead.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
+import Logo from '../components/Logo.astro';
 import '../styles/_base.scss';
 import GoogleAnalytics from '../components/GoogleAnalytics.astro';
 
@@ -20,18 +20,22 @@ const { title, excerpt, date, banner } = Astro.props;
   <GoogleAnalytics />
 	<body>
 		<main>
-      <Header />
 			<article>
+        <Logo />
+        <br />
         <h1>{title}</h1>
         Posted on <FormattedDate date={date} />
         <hr />
         { banner && <Image class="banner"src={banner!} width={1216} height={684} alt={title} /> }
         <slot />
 			</article>
+      <deific-background section="blog-post"></deific-background>
       <Footer />
 		</main>
     <script>
       import '../elements/waves'
+      import '../elements/menu'
+      import '../elements/background'
     </script>
     <style>
       h1, h2, h3, h4, h5, h6 {
@@ -58,17 +62,21 @@ const { title, excerpt, date, banner } = Astro.props;
         margin-bottom: 2rem;
       }
 
-
-
       article {
         text-align: left;
         line-height: 2;
         font-size: 1.125rem;
         padding: 3rem 2rem 256px 2rem;
       }
+
       article {
-        max-width: 1280px;
+        max-width: 1024px;
         margin: 0 auto;
+      }
+
+      deific-background {
+        position: fixed;
+        top: 0;
       }
 
       .banner {

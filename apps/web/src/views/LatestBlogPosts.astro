@@ -1,0 +1,122 @@
+---
+import { getCollection } from 'astro:content';
+import FormattedDate from '../components/FormattedDate.astro';
+
+const { postsToShow = 3 } = Astro.props;
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+
+<deific-blog>
+  {
+    posts.map((post, index) => {
+      if (index >= postsToShow) return null;
+      const bannerImage = post.data.banner ?? '';
+      return (
+        <deific-blog-post slot={`slide-${index}`}>
+          <h3>
+            {post.data.title}&nbsp;
+            <kemet-button rounded="circle" link={`/blog/${post.id}/`}>
+              <kemet-icon-bootstrap icon="chevron-right"></kemet-icon-bootstrap>
+            </kemet-button>
+          </h3>
+          <span class="date">
+            <kemet-icon-bootstrap icon="calendar"></kemet-icon-bootstrap>&nbsp;&nbsp;
+            <FormattedDate date={post.data.date} />
+          </span>
+          {bannerImage && <a href={`/blog/${post.id}/`}><img src={bannerImage} alt={post.data.title} /></a>}
+          <div class="action">
+            <p>{post.data.excerpt}</p>
+          </div>
+        </deific-blog-post>
+      );
+    })
+  }
+</deific-blog>
+<kemet-button rounded="pill" variant="outlined" link="/blog/all" polarity="dark">
+  <kemet-icon-bootstrap icon="chevron-right" slot="right"></kemet-icon-bootstrap>
+  View all of my blog posts
+</kemet-button>
+<style>
+  deific-blog {
+    scroll-snap-align: start;
+
+    [slot] {
+      display: grid;
+      margin-top: -10vh;
+      padding: 1rem;
+
+      @media (width > 1024px) {
+        margin-top: 0;
+      }
+    }
+
+    h3 {
+      display: inline;
+      font-size: 1.25rem;
+      line-height: 1.5;
+      padding: 0 4rem 0 0;
+      box-sizing: border-box;
+      margin: 0;
+      max-width: 100%;
+
+      @media (width > 1024px) {
+         font-size: 2rem;
+         max-width: 50vw;
+      }
+
+      kemet-button {
+        display: none;
+        transform: scale(0.8);
+
+        @media (width > 1024px) {
+          display: inline-flex;
+        }
+      }
+    }
+
+    img {
+      width: auto;
+      margin-top: 1rem;
+      max-height: 25vh;
+    }
+
+    .date {
+      display: none;
+      font-size: 0.9rem;
+      align-items: center;
+      margin-bottom: 1rem;
+
+      @media (width > 1024px) {
+        display: inline-flex;
+      }
+    }
+
+    .action {
+      display: grid;
+      gap: 2rem;
+      align-items: center;
+      grid-template-columns: 1fr auto;
+
+      max-width: 100%;
+
+      p {
+        font-size: 1.1rem;
+        text-align: justify;
+
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      @media (width > 1024px) {
+         max-width: 50vw;
+         margin-top: 1rem;
+      }
+    }
+  }
+</style>
+

@@ -1,7 +1,10 @@
-const { app, PORT, loadRoutes } = require('./dist/server.cjs');
+const { app, PORT, loadRoutes, setup404Handler } = require('./dist/server.cjs');
 
 // Load routes before starting server
 loadRoutes().then(() => {
+  // Setup 404 handler after routes are loaded
+  setup404Handler();
+
   // Start server
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

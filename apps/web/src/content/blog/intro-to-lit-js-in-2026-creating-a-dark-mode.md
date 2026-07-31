@@ -9,6 +9,7 @@ tags:
 - dark mode
 - theming
 excerpt: The very first thing I blogged about was creating a dark mode in Lit. I wrote that blog six years ago. Here I revisit the topic with more modern updates for 2026. This is a beginner friendly blog. I’ll write more about advanced theming practices in a practical app later.
+banner: /posts/intro-to-lit-js-in-2026-creating-a-dark-mode/banner.png
 ---
 
 For this blog I’ll be covering a StackBlitz demo I put together. [You can find the demo here](https://stackblitz.com/edit/dark-mode-toggle-with-lit) and below.
